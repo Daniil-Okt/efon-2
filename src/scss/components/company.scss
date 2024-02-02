@@ -1,0 +1,100 @@
+
+.company {
+    @include adaptiveClamp(margin-top, 100, 64);
+    border-top: 2px solid  #8060F6;
+    border-bottom: 2px solid#8060F6;
+    background:linear-gradient(42deg, #292758 0%, #3A1FA0 100%);
+    overflow: hidden;
+
+
+    &:last-child {
+      @include adaptiveClamp(margin-top, 0, 0);
+    }
+    &__container {
+        
+    }
+
+    &__swiper {
+        // margin: auto 0;
+        min-width: auto;
+        height: rem(146);
+        display: flex !important;
+        align-items: center;
+        position: relative;
+        @media(max-width:800px){
+            height: rem(120);
+        }
+        @media(max-width:600px){
+            height: rem(80);
+        }
+    }
+
+    &__content {
+        display: flex;
+        width: auto;
+        flex-shrink: 0;
+        min-width: 100%;
+        @media(max-width:1920px){
+            @include adaptiveClamp(width, 3444, 1163);
+        }
+        
+    }
+    &__wrapper {
+        display: flex !important;
+        align-items: center;
+        counter-reset: item;
+        flex-shrink: 0;
+        min-width: 100%;
+        position: relative;
+        @media(max-width:1920px){
+            @include adaptiveClamp(width, 3444, 1163);
+        }
+        // transition-property: transform;
+        animation: ticker 20s infinite linear forwards;
+        box-sizing: content-box;
+
+        @media(max-width:1400px){
+            flex-shrink: 0.089;
+        }
+        @media(max-width:1000px){
+            flex-shrink: 0.093;
+        }
+        @media(max-width:600px){
+            flex-shrink: 0.288;
+        }
+    }
+
+    &__slide {
+        display: flex;
+        width: auto;
+        margin: 0 rem(54);
+        align-items: center;
+        counter-increment: item;
+        img {
+            width: 100%;
+            // max-width: 50%;
+        }
+        @media(max-width:1400px){
+            margin: 0 rem(30);
+        }
+        @media(max-width:1000px){
+            margin: 0 rem(15);
+        }
+        @media(max-width:600px){
+            margin: 0 rem(6);
+        }
+    }
+}
+.swiper-wrapper {
+}
+.swiper-slide {
+}
+
+  @keyframes ticker {
+    0% {
+    margin-left: 0;
+    }
+    100% {
+      margin-left: -100%;
+    }
+}

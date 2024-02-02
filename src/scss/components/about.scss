@@ -1,0 +1,289 @@
+.about {
+    position: relative;
+    padding-top: rem(160);
+    padding-bottom: rem(40);
+    // background: #FFF;
+    @media(max-width:1040px){
+        padding-top: rem(80);
+    }
+    @media(max-width:750px){
+        padding-bottom: rem(32);
+    }
+    // &::before {
+    //     position: absolute;
+    //     content: '';
+    //     width: 100%;
+    //     height: 100%;
+    //     background: #292758;
+    //     top:0;
+    //     left: 0;
+    //     z-index: -1;
+    //     border-radius: 0px 0px 64px 64px;
+    //     @media(max-width:600px){
+    //         border-radius: 0px 0px 32px 32px;
+    //     }
+    // }
+    &::after {
+        position: absolute;
+        content: '';
+        width: rem(683.5);
+        height: rem(761);
+        background: url(@img/about-fon.png) no-repeat center center / contain;
+        top:rem(65);
+        left: 0;
+        z-index: 2;
+        @media(max-width:1050px){
+            top:rem(582);
+        }
+
+        @media(max-width:650px){
+            top:rem(700);
+            width: rem(523.5);
+            height: rem(601);
+        }
+    }
+    &__container {
+        @media(max-width:680px){
+            // display: flex;
+            // flex-direction: column;
+            // align-items: center;
+        }
+    }
+
+    &__row {
+        display: flex;
+        justify-content: space-between;
+        gap: rem(74);
+        @media(max-width:1625px){
+            gap: rem(32);
+        }
+        @media(max-width:1470px){
+            gap: 0;
+        }
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        gap: rem(40);
+        max-width: rem(600);
+        min-width: rem(561);
+        @media(max-width:1315px){
+            min-width: rem(500);
+            max-width: rem(500);
+        }
+        @media(max-width:1040px){
+            text-align: center;
+            max-width: 100%;
+            width: 100%;
+            min-width: 0;
+            align-items: center;
+        }
+    }
+
+    &__title {
+        font-size: rem(48);
+        font-weight: 900;
+        line-height: 140%;
+        // max-width: rem(561);
+        position: relative;
+        z-index: 3;
+        @media(max-width:1315px){
+            font-size: rem(40);
+            // max-width: rem(450);
+        }
+        @media(max-width:1040px){
+            max-width: rem(640);
+            // margin-bottom: rem(24);
+        }
+        @media(max-width:550px){
+            font-size: rem(35);
+        }
+        @media(max-width:470px){
+            font-size: rem(32);
+        }
+        @media(max-width:436px){
+            font-size: rem(26);
+            // max-width: rem(320);
+            margin: 0 auto;
+        }
+    }
+
+    &__text {
+        margin-top: rem(-10);
+        font-size: rem(20);
+        max-width: rem(580);
+        position: relative;
+        z-index: 3;
+        line-height: 150%;
+        @media(max-width:1040px){
+            max-width: rem(721);
+        }
+        @media(max-width:550px){
+            font-size: rem(16);
+        }
+    }
+
+    &__button-row {
+        display: inline-flex;
+        gap: rem(10);
+        position: relative;
+        max-width: rem(320);
+        flex-direction: column;
+        z-index: 3;
+        @media(max-width:555px){
+            align-items: center;
+            width: 100%;
+        }
+        p {
+            text-align: center;
+            font-weight: 300;
+            font-size: rem(14);
+        }
+    }
+
+    &__button {
+        p {
+            font-weight: 900;
+            font-size: rem(16);
+        }
+        @media(max-width:555px){
+            width: 100%;
+            max-width: rem(350);
+        }
+    }
+
+
+
+    &__rates {
+    }
+    &__video {
+        max-width: rem(665);
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        flex-direction: column;
+        z-index: 0;
+        @media(max-width:1040px){
+            max-width: rem(800);
+        }
+        @media(max-width:780px){
+            max-width: rem(645);
+        }
+    }
+
+	&__video-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: rem(0);
+        p {
+            font-weight: 300;
+        }
+        img {
+            width: rem(24);
+            height: rem(24);
+            // animation: video-icon 3s inherit  0s ;
+            animation-name: video-icon;
+            animation-duration: 2s;
+            animation-delay: 0s;
+            animation-iteration-count: infinite;
+        }
+        @media(max-width:1040px){
+            display: none;
+        }
+	}
+    @keyframes video-icon {
+        0% {
+            transform: translateY(0);
+        }
+        20% {
+            transform: translateY(2px);
+        }
+        60% {
+            transform: translateY(0);
+        }
+    }
+    &__video-row {
+        position: relative;
+        // background: rgb(46,44,98);
+       
+        video {
+            width: 100%;
+            display: block;
+            ._play & {
+                opacity: 1;
+            }
+        }
+        
+    }
+    // .about &__video-row {
+    //     &::before {
+    //         position: absolute;
+    //         content: '';
+    //         width: 100%;
+    //         height: 100%;
+    //         // margin: -5px;
+    //         background-color: red;
+    //         border: 3px solid rgb(46,44,98);
+    //         top:-5px;
+    //         left: -5px;
+    //         z-index: 3;
+    //     }
+    // }
+
+    &__rates-row {
+        margin-top: rem(58.5);
+        @media(max-width:1280px){
+            margin-top: rem(100);
+        }
+        @media(max-width:1040px){
+            margin-top: rem(64);
+        }
+        @media(max-width:680px){
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: rem(32);
+        }
+    }
+}
+
+.rates-about {
+    
+    display: inline-flex;
+    border: 2px solid #8060F6;
+    background: #FFF;
+    padding: rem(8) rem(24) rem(8) rem(8);
+    border-radius: 100px;
+    align-items: center;
+    gap: rem(10);
+    max-width: rem(319);
+    
+    &__row-icon {
+        display: flex;
+        align-items: center;
+        img {
+            width: rem(48);
+            &:not(:first-child) {
+                margin-left: rem(-16);
+            }
+        }
+        @media(max-width:550px){
+            img {
+                width: rem(32);
+                &:not(:first-child) {
+                    margin-left: rem(2);
+                }
+            }
+            
+        }
+    }
+    &__text {
+        // color: var(--white-color);
+        font-weight: 600;
+        font-size: rem(20);
+    }
+}
