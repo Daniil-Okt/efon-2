@@ -198,6 +198,15 @@
   input {
     background: var(--black-color);
     color: rgb(128, 96, 246);
+    &:-webkit-autofill:hover, 
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill {
+    // border: 0px solid #EDF0F7;
+    -webkit-text-fill-color: rgb(128, 96, 246);
+    -webkit-box-shadow: 0 0 0px 1000px var(--black-color) inset;
+    background-color: var(--black-color);
+    transition: background-color 5000s ease-in-out 0s;
+    }
   }
   form {
     @media(max-width:1400px){

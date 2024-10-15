@@ -41,7 +41,7 @@ class BaseHelpers {
    * Добавление loaded для HTML после полной загрузки страницы
    * */
   static addLoadedClass() {
-    window.addEventListener('load', () => {
+    window.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         this.html.classList.add('loaded');
       }, 0);

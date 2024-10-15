@@ -1,0 +1,104 @@
+.works {
+    @include adaptiveClamp(padding-top, 128, 64);
+    position: relative;
+    &::before {
+        position: absolute;
+        content: '';
+        width: rem(1032);
+        height: rem(868);
+        background: url(@img/works-fon.png) no-repeat center center / contain;
+        bottom: rem(120);
+        left: 50%;
+        transform: translateX(-50%);
+        @media(max-width:1040px){
+            width: rem(804);
+            height: rem(640);
+        }
+        @media(max-width:1040px){
+            width: rem(804);
+            height: rem(640);
+            bottom: rem(-60);
+        }
+        @media(max-width:720px){
+            bottom: auto;
+            top: rem(256);
+        }
+        @media(max-width:600px){
+            width: rem(624);
+            height: rem(460);
+        }
+        @media(max-width:500px){
+            top: rem(200);
+        }
+    }
+    &__container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__title {
+    }
+
+    &__img {
+        max-width: rem(896);
+        width: 100%;
+        margin: 0 auto;
+        margin-bottom: rem(80);
+        @media(max-width:1300px){
+            @include adaptiveClamp(max-width, 728, 390);
+        }
+        @media(max-width:1200px){
+            margin-bottom: rem(64);
+        }
+        @media(max-width:740px){
+            @include adaptiveClamp(max-width, 728, 328);
+        }
+        @media(max-width:600px){
+            margin-bottom: rem(40);
+        }
+    }
+
+    &__row {
+        display: grid;
+        gap: rem(32);
+        grid-template-columns: 1fr 1fr;
+        min-width: 100%;
+        width: 100%;
+        @media(max-width:1040px){
+            gap: rem(24);
+        }
+        @media(max-width:720px){
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &__item {
+        width: 100%;
+        padding: rem(32) rem(40);
+        display: flex;
+        flex-direction: column;
+        gap: rem(32);
+        background-color: var(--white-color);
+        border-radius: 32px;
+        box-shadow: 0px -0.12px 4.16px 0px rgba(6, 0, 22, 0.01),0px 6.01px 11.7px 0px rgba(6, 0, 22, 0.02),0px 24.63px 31.39px 0px rgba(6, 0, 22, 0.02),0px 62px 72px 0px rgba(6, 0, 22, 0.03);
+
+
+        img {
+            width: rem(32);
+            height: rem(32);
+        }
+        p {
+            font-size: rem(24);
+            font-weight: 300;
+            @media(max-width:1040px){
+                font-size: rem(20);
+            }
+            @media(max-width:600px){
+                font-size: rem(16);
+            }
+        }
+    }
+}
+.violet {
+}

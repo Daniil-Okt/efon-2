@@ -183,90 +183,148 @@ useDynamicAdapt()
 const popupTranks = document.querySelector('.popup-tranks')
 // const formNAME = document.getElementById('form-NAME')
 // validForm(fromName, popupTranks)
+function checkFormUnlock(form) {
+	let resultCheck = false;
+	const inputFormRecord = form.querySelectorAll('._req');
+	const inputFormRecordWithOk = form.querySelectorAll('._req._ok');
+	const recaptcha = form.querySelector('.g-recaptcha');
+	
+	if (inputFormRecordWithOk.length === inputFormRecord.length){
+		if (recaptcha){
+			// console.log(recaptcha);
+			var intervalId = setInterval(function() {
+				var response = grecaptcha.getResponse();
+				// console.log(response)
+				if (response.length == 0) {
+					resultCheck = false;
+					// console.log("Рекапча не заполнена");
+				} else {
+					resultCheck = true;
+					// console.log("Рекапча заполнена");
+					form.querySelector('button').addEventListener('click', () => {
+						clearInterval(intervalId);
+					})
+				}
+				if (resultCheck) {
+					form.classList.add('unlock');
+				} else {
+					form.classList.remove('unlock');
+				}
+			}, 1000); 
+		} else {
+			resultCheck = true;
+		}
+	} else {
+		resultCheck = false;
+	}
+	
+	if (resultCheck) {
+		form.classList.add('unlock');
+	} else {
+		form.classList.remove('unlock');
+	}
+}
+
 function validForm(form) {
 	const inputFormRecord = form.querySelectorAll('._req');
-  
 	inputFormRecord.forEach(input => {
+		inputValid(input)
+		//удаляем классы _error
+		if (inputFormRecord.length > 0) {
+			inputFormRecord.forEach(input => {
+				input.parentElement.classList.remove('_error');
+				input.classList.remove('_error');
+			});
+		}
 		input.addEventListener('input', function() {
 			formRemoveError(input);
-  
-			if (input.classList.contains('_email')) {
-			  if(emailTest(input)) {
-				formRemoveError(input);
-			  } else {
-				formAddError(input);
-			  }
-			} else if (input.getAttribute("type") === "checkbox") {
-			  if(input.checked) {
-				formRemoveError(input);
-			  } else {
-				formAddError(input);
-			  }
-			} else if (input.getAttribute("type") === "tel") {
-			  if(telTest(input)) {
-				formRemoveError(input);
-			  } else {
-				formAddError(input);
-			  }
-			} else if (input.classList.contains('data')) {
-			  if(input.value.length >= 10) {
-				formRemoveError(input);
-			  } else {
-				formAddError(input);
-			  }
-			} else if (input.classList.contains('password-replay')) {
-			  if(input.value === form.querySelector('.password').value) {
-				formRemoveError(input);
-			  } else {
-				formAddError(input);
-			  }
-			} else if (input.value.trim() === '') {
-				formAddError(input);
-			}
-  
-			checkFormUnlock(); // Проверка на наличие класса unlock
+			inputValid(input)
+			checkFormUnlock(form); // Проверка на наличие класса unlock
 		});
 	});
-  
+	function inputValid(input) {
+		if (input.classList.contains('_email')) {
+			if(emailTest(input)) {
+			formRemoveError(input);
+			} else {
+			formAddError(input);
+			}
+		} else if (input.getAttribute("type") === "checkbox") {
+			if(input.checked) {
+			formRemoveError(input);
+			} else {
+			formAddError(input);
+			}
+		} else if (input.classList.contains('password')) {
+			if(input.value.length >= 8) {
+				formRemoveError(input);
+			} else {
+				formAddError(input);
+			}
+		} else if (input.classList.contains('data')) {
+			if(input.value.length >= 10) {
+			formRemoveError(input);
+			} else {
+			formAddError(input);
+			}
+		} else if (input.classList.contains('tel')) {
+			if(input.value.length >= 5) {
+			formRemoveError(input);
+			} else {
+			formAddError(input);
+			}
+		} else if (input.classList.contains('withdrawal')) {
+			if(input.value.length >= 3) {
+				formRemoveError(input);
+			} else {
+				formAddError(input);
+			}
+		} else if (input.classList.contains('password-replay')) {
+			if(input.value === form.querySelector('.password').value) {
+			formRemoveError(input);
+			} else {
+			formAddError(input);
+			}
+		} else if (input.classList.contains('promo-code')) {
+			if(input.value.length >= 4) {
+			formRemoveError(input);
+			} else {
+			formAddError(input);
+			}
+		} else if (input.value.trim() === '') {
+			formAddError(input);
+		}
+
+	}
 	function formAddError(input) {
 		input.parentElement.classList.add('_error');
 		input.classList.add('_error');
 		input.parentElement.classList.remove('_ok');
 		input.classList.remove('_ok');
 	}
-  
+
 	function formRemoveError(input) {
 		input.parentElement.classList.remove('_error');
 		input.classList.remove('_error');
 		input.parentElement.classList.add('_ok');
 		input.classList.add('_ok');
 	}
-  
+
 	// function formAddOk(input) {
 	//     input.parentElement.classList.add('_ok');
 	//     input.classList.add('_ok');
 	// }
-  
+
 	function emailTest(input) {
 		return /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/.test(input.value.trim());
 	}
-  
+
 	function telTest(input) {
 		return /^[\d\+][\d\(\)\ -]{4,14}\d$/.test(input.value.trim());
 	}
-  
-	function checkFormUnlock() {
-		const inputFormRecordWithOk = form.querySelectorAll('._req._ok');
-		if (inputFormRecordWithOk.length === inputFormRecord.length) {
-			form.classList.add('unlock');
-		} else {
-			form.classList.remove('unlock');
-		}
-	}
-  
-	// Вызываем функцию проверки при загрузке страницы
-	checkFormUnlock();
 }
+
+//отправка php
 function sendForm(form, popupTranks) {
     const url = 'static/send.php';
 
@@ -303,11 +361,23 @@ function sendForm(form, popupTranks) {
 			  
 	}
 }
-  const formFooter = document.getElementById('form-footer')
-  if (formFooter) {
-	validForm(formFooter)
-	sendForm(formFooter, popupTranks)
-  }
+// const formFill = document.getElementById('form-fill')
+//   if (formFill) {
+// 	validForm(formFill)
+// 	sendForm(formFill, popupTranks)
+//   }
+//   const formPopup = document.getElementById('popup-form')
+//   if (formPopup) {
+// 	validForm(formPopup)
+// 	sendForm(formPopup, popupTranks)
+//   }
+const formAll = document.querySelectorAll('form')
+if (formAll.length > 0) {
+	formAll.forEach(form => {
+		validForm(form)
+		sendForm(form, popupTranks)
+	});
+}
 // =======================================================================================================
 
 /* Добавление класса _active родителю при клике ========================================================
@@ -448,8 +518,8 @@ document.addEventListener('DOMContentLoaded', function() {
 			head.nextElementSibling.classList.remove('open');
 			selectItem.classList.add('open');
 			selectItem.parentElement.classList.remove('open');
-			selectItem.parentElement.previousElementSibling.textContent = selectItem.textContent;
-			selectItem.parentElement.previousElementSibling.previousElementSibling.value = selectItem.textContent;
+			selectItem.parentElement.parentElement.previousElementSibling.textContent = selectItem.textContent;
+			selectItem.parentElement.parentElement.previousElementSibling.previousElementSibling.value = selectItem.textContent;
 		  }
 		  
 		});
@@ -472,3 +542,50 @@ document.addEventListener('DOMContentLoaded', function() {
 	  }
 	});
   });
+
+
+
+
+//скролл к элементу
+const links = document.querySelectorAll('a.menu__link');
+links.forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+
+    const href = this.getAttribute('href').substring(1);
+
+    const scrollTarget = document.getElementById(href);
+
+    scrollTarget.scrollIntoView();
+  });
+});
+
+
+function maskNumber() {
+	window.addEventListener("DOMContentLoaded", function() {
+	  [].forEach.call(document.querySelectorAll('.number'), function(input) {
+		var keyCode;
+		function mask(event) {
+		  event.keyCode && (keyCode = event.keyCode);
+		  var pos = this.selectionStart;
+		  var val = this.value.replace(/\D/g, "");
+		  var new_value = val;
+		  
+		  if (event.type === "input") {
+			new_value = val;
+		  }
+		  
+		  if (!/^\d*$/.test(this.value) || keyCode > 47 && keyCode < 58) {
+			this.value = new_value;
+		  }
+		}
+  
+		input.addEventListener("input", mask, false);
+		input.addEventListener("focus", mask, false);
+		input.addEventListener("blur", mask, false);
+		input.addEventListener("keydown", mask, false);
+	  });
+	});
+  }
+  
+maskNumber()

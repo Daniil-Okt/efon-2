@@ -48,6 +48,7 @@
         display: flex;
         justify-content: center;
         max-width: rem(664);
+        width: 100%;
         @media(max-width:1315px){
             max-width: rem(499);
         }
@@ -209,7 +210,7 @@
 
     &__select {
         @media(max-width:600px){
-            display: none;
+            // display: none;
         }
     }
 

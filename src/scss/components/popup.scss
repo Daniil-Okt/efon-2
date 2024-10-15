@@ -126,7 +126,7 @@
     }
 
     &__button {
-        background: var(--Gradient-Light, linear-gradient(114deg, #A088FB 0%, #B8A6FB 100%));
+        background: linear-gradient(114deg, #A088FB 0%, #B8A6FB 100%);
         pointer-events: none;
         // transition: all 0.5s ease  0s;
         width: 100%;

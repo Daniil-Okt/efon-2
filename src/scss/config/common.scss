@@ -137,7 +137,7 @@
         background-color: #8060F6;
         border-radius: 16px;
         cursor: pointer;
-        transition: all 0.3s ease  0s;
+        transition: all 0.5s ease  0s;
         &__icon {
             position: absolute;
             display: flex;
@@ -154,7 +154,7 @@
             max-height: calc(100% - 0.25rem);
             background: linear-gradient(114.23deg, #A088FB 0%, #B8A6FB 100%);
             border-radius: 14px;
-            transition: all 0.3s ease  0s;
+            transition: all 0.6s ease  0s;
             img {
                 width: rem(18);
                 height: rem(20);
@@ -230,62 +230,71 @@
 .select__head.open::after {
     transform: translateY(50%) rotate(180deg);
 }
-
+.select__row {
+    display: flex;
+    flex-direction: column;
+    gap: rem(16);
+    overflow-x: hidden;
+    overflow-y: scroll;
+    max-height: rem(214);
+    &::-webkit-scrollbar {
+        width: rem(4);
+        background: #8060F633;
+    }
+    
+    &::-webkit-scrollbar-track {
+        border-radius: 1px;
+        background: transparent;
+        padding: rem(5);
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        border-radius: 20px;
+        background: #8060F6;
+        border: 5px solid transparent;
+        
+    }
+}
 .select__list {
     position: absolute;
+    padding: rem(16) rem(16) rem(16) rem(25);
     top: 100%;
     left: 0;
     right: 0;
     background: #fff;
     border-radius: 16px;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-
+    overflow: hidden;
     margin-top: 5px;
     max-height: 0px;
     opacity: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
+    
     z-index: 100;
     margin: 0;
-    padding: 0;
-    font-size: rem(16);
-    color: #4F4F4F;
-    scrollbar-color: #8060F6CC;
-    scrollbar-width: 3px;
+    font-size: rem(20);
+    // scrollbar-color: #8060F6CC;
+    // scrollbar-width: 3px;
     overscroll-behavior: contain;
     transition: all 0.3s ease  0s;
     &.open {
-        max-height: 180px;
+        max-height: rem(246);
         opacity: 1;
     }
-    &::-webkit-scrollbar {
-        width: 5px;
-        background: transparent;
-    }
     
-    &::-webkit-scrollbar-track {
-        border-radius: 20px;
-        background: transparent;
-    }
-    
-    &::-webkit-scrollbar-thumb {
-        border-radius: 20px;
-        background: transparent;
-        border: 2px solid transparent;
-    }
 }
 
 .select__list .select__item {
     position: relative;
-    border-top: 1px solid rgba(224, 229, 231, 0.5);
-    padding: 10px;
+    // border-top: 1px solid rgba(224, 229, 231, 0.5);
+    // padding: rem(10) rem(25);
     cursor: pointer;
     list-style-type: none;
+    transition: all 0.3s ease  0s;
+    &:hover {
+        color: #8060F6;
+    }
 }
 
-.select__list .select__item:hover {
-    background-color: rgba(224, 229, 231, 0.5);
-}
 .select__sub-title {
     font-size: rem(14);
     font-weight: 475;
